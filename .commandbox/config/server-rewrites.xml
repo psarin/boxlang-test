@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlrewrite>
+
+	<rule match-type="regex" enabled="true">
+		<condition type="request-filename" operator="notfile" />
+		<condition type="request-filename" operator="notdir" />
+		<condition type="request-uri" operator="notequal">(\.cfm|\.html|\.js)</condition>
+		<from>^/dist/(.*)$</from>
+		<to last="true">/dist/index.cfm</to>
+	</rule>
+
+    <rule enabled="true">
+        <name>Generic Pretty URLs Pass-through</name>
+        <condition type="request-uri" operator="notequal">^/orrmsapi/(index.cfm|robots.txt|osd.xml|flex2gateway|cfide|cfformgateway|lucee-context|admin-cont
+ext|files|images|jrunscripts|javascripts|miscellaneous|stylesheets)</condition>
+        <from>^/orrmsapi/(.*)$</from>
+        <to type="passthrough">/orrmsapi/index.cfm/$1</to>
+    </rule>
+
+    <rule enabled="true">
+    	 <name>URL reroute for orrmsapi</name>
+        <from>^/orrmsapi/(.*)$</from>
+        <to type="passthrough">/api/$1</to>
+    </rule>
+
+	<rule enabled="true">
+		<name>URL reroute for assets</name>
+	   <from>^/assets/(.*)$</from>
+	   <to type="passthrough">/assets/$1</to>
+   </rule>
+
+    <rule>
+        <note>
+            The rule means that requests to /test/status/ will be redirected to /rewrite-status
+            the url will be rewritten.
+        </note>
+        <from>/test/status/</from>
+
+        <to type="redirect">%{context-path}/rewrite-status</to>
+    </rule>
+
+    <outbound-rule>
+        <note>
+            The outbound-rule specifies that when response.encodeURL is called (if you are using JSTL c:url)
+            the url /rewrite-status will be rewritten to /test/status/.
+
+            The above rule and this outbound-rule means that end users should never see the
+            url /rewrite-status only /test/status/ both in thier location bar and in hyperlinks
+            in your pages.
+        </note>
+        <from>/rewrite-status</from>
+        <to>/test/status/</to>
+    </outbound-rule>
+</urlrewrite>

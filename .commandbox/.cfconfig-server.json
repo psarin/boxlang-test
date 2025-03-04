@@ -1,0 +1,72 @@
+{
+	"developerMode": true,
+	"lineDebuggerEnabled": true,
+	"debuggingEnabled": true,
+	"adminRDSEnabled": true,
+	"adminPassword": "boxlangtestpassword",
+	"applicationTimeout": "1,0,0,0",
+	"clientCookies": "yes",
+	"clientManagement": "no",
+	"clientTimeout": "90,0,0,0",
+	"dotNotationUppercase": false,
+	"inspectTemplate": "once",
+	"mailConnectionTimeout": "30",
+	"mailSpoolEnable": "yes",
+	"maxTemplateRequests": "100",
+	"mergeURLAndForm": "no",
+	"nullSupport": true,
+	"requestQueueEnable": "false",
+	"requestQueueTimeout": 0,
+	"requestTimeout": "0,0,0,120",
+	"requestTimeOutEnabled": true,
+	"requestTimeoutInURL": "true",
+	"sessionManagement": "yes",
+	"sessionTimeout": "0,0,30,0",
+	"templateCharset": "UTF-8",
+	"thisTimeZone": "America/New_York",
+	"timeServer": "pool.ntp.org",
+	"whitespaceManagement": "smart",
+	"compression": true,
+	"cacheDefaultObject": "boxlangtestcache",
+	"caches": {
+		"boxlangtestcache": {
+			"class": "lucee.runtime.cache.ram.RamCache",
+			"custom": {
+				"timeToIdleSeconds": "0",
+				"timeToLiveSeconds": "0"
+			},
+			"readOnly": "false",
+			"storage": "false",
+			"type": "RAM"
+		}
+	},
+	"datasources": {
+		"db_boxlang": {
+			"allowDrop": true,
+			"allowInsert": true,
+			"allowDelete": true,
+			"allowSelect": true,
+			"allowCreate": true,
+			"host": "${DB_HOST}",
+			"dbdriver": "custom",
+			"allowUpdate": true,
+			"allowAlter": true,
+			"database": "${DB_DATABASE}",
+			"dsn": "jdbc:postgresql://{host}:{port}/{database}",
+			"port": "5432",
+			"class": "org.postgresql.Driver",
+			"bundleName": "org.postgresql.jdbc",
+			"bundleVersion": "42.7.3",
+			"allowGrant": true,
+			"username": "${DB_USERNAME}",
+			"password": "${DB_PASSWORD}",
+			"allowRevoke": true,
+			"connectionLimit":500,
+			"connectionTimeout":5,
+			"liveTimeout":15
+		}
+	},
+	"scheduledTasks": {
+
+	}
+}

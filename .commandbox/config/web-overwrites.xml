@@ -1,0 +1,37 @@
+<web-app>
+  <!-- WebSockets: Use this filter code block if installing on Tomcat !-->
+   <!-- 
+      <filter>
+        <filter-name>HttpSessionInitializerFilter</filter-name>
+        <filter-class>org.apache.catalina.filters.SessionInitializerFilter</filter-class>
+      </filter> 
+    -->
+
+    <!-- WebSockets: Use this filter code block if you installed servlet-filter-utils-1.1.1.jar manually, e.g. for Jetty !-->
+    <!--
+    <filter>
+        <filter-name>HttpSessionInitializerFilter</filter-name>
+        <filter-class>net.twentyonesolutions.servlet.filter.HttpSessionInitializerFilter</filter-class>
+    </filter>
+    -->
+
+    <!-- WebSockets: modify url-pattern to match your websocket endpoints !-->
+    <!--
+    <filter-mapping>
+        <filter-name>HttpSessionInitializerFilter</filter-name>
+        <url-pattern>/ws/*</url-pattern>
+    </filter-mapping>
+    -->
+  
+  <servlet-mapping>
+    <servlet-name>CFMLServlet</servlet-name>
+    <url-pattern>*.cfc</url-pattern>
+    <url-pattern>*.cfm</url-pattern>
+    <url-pattern>*.cfml</url-pattern>
+    <url-pattern>/index.cfc/*</url-pattern>
+    <url-pattern>/index.cfm/*</url-pattern>
+    <url-pattern>/index.cfml/*</url-pattern>
+  </servlet-mapping>
+
+</web-app>
+
